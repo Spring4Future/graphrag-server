@@ -4,10 +4,10 @@ import time
 import pandas as pd
 from neo4j import GraphDatabase
 
-NEO4J_URI = "neo4j://localhost"  # or neo4j+s://xxxx.databases.neo4j.io
+NEO4J_URI = "neo4j://localhost:7687"  # or neo4j+s://xxxx.databases.neo4j.io
 NEO4J_USERNAME = "neo4j"
-NEO4J_PASSWORD = "password"
-NEO4J_DATABASE = "neo4j"
+NEO4J_PASSWORD = "adminadmin"
+NEO4J_DATABASE = "product"
 
 # Create a Neo4j driver
 driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
