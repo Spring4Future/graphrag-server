@@ -10,16 +10,7 @@ from typing import Optional
 
 from openai.types import CompletionUsage
 
-
-class BaseLLMCallback:
-    """Base class for LLM callbacks."""
-
-    def __init__(self):
-        self.response = []
-
-    def on_llm_new_token(self, token: str):
-        """Handle when a new token is generated."""
-        self.response.append(token)
+from graphrag.callbacks.llm_callbacks import BaseLLMCallback
 
     def on_llm_stop(self, usage: Optional[CompletionUsage]):
         pass

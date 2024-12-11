@@ -102,6 +102,9 @@ docker run kylinmountain/graphrag-server:0.3.1 python -m graphrag.index --root .
 ```
 
 
+
+
+-------
 # GraphRAG
 
 👉 [Use the GraphRAG Accelerator solution](https://github.com/Azure-Samples/graphrag-accelerator) <br/>
@@ -149,7 +152,7 @@ This repository presents a methodology for using knowledge graph memory structur
 ## Prompt Tuning
 
 Using _GraphRAG_ with your data out of the box may not yield the best possible results.
-We strongly recommend to fine-tune your prompts following the [Prompt Tuning Guide](https://microsoft.github.io/graphrag/posts/prompt_tuning/overview/) in our documentation.
+We strongly recommend to fine-tune your prompts following the [Prompt Tuning Guide](https://microsoft.github.io/graphrag/prompt_tuning/overview/) in our documentation.
 
 ## Responsible AI FAQ
 

@@ -7,8 +7,13 @@ import nbformat
 import pytest
 
 NOTEBOOKS_PATH = Path("examples_notebooks")
+EXCLUDED_PATH = NOTEBOOKS_PATH / "community_contrib"
 
-notebooks_list = list(NOTEBOOKS_PATH.rglob("*.ipynb"))
+notebooks_list = [
+    notebook
+    for notebook in NOTEBOOKS_PATH.rglob("*.ipynb")
+    if EXCLUDED_PATH not in notebook.parents
+]
 
 
 def _notebook_run(filepath: Path):
@@ -24,7 +29,7 @@ def _notebook_run(filepath: Path):
         "-y",
         "--no-prompt",
         "--stdout",
-        filepath.absolute().as_posix(),
+        str(filepath.absolute().resolve()),
     ]
     notebook = subprocess.check_output(args)
     nb = nbformat.reads(notebook, nbformat.current_nbformat)

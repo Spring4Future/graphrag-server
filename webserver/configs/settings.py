@@ -16,9 +16,6 @@ class Settings(BaseSettings):
     data: str = (
         "./output"
     )
-    lancedb_uri: str = (
-        "./lancedb"
-    )
     llm: LLMParameters
     embeddings: TextEmbeddingConfig
     global_search: GlobalSearchConfig
@@ -32,12 +29,19 @@ class Settings(BaseSettings):
         return OpenaiApiType.AzureOpenAI if self.is_azure_client() else OpenaiApiType.OpenAI
 
     def azure_ad_token_provider(self):
-        if self.llm.cognitive_services_endpoint is None:
-            cognitive_services_endpoint = "https://cognitiveservices.azure.com/.default"
-        else:
-            cognitive_services_endpoint = settings.llm.cognitive_services_endpoint
-        if self.is_azure_client() and not settings.llm.api_key:
-            return get_bearer_token_provider(DefaultAzureCredential(), cognitive_services_endpoint)
+        is_azure_client = (
+                settings.llm.type == LLMType.AzureOpenAIChat
+                or settings.llm.type == LLMType.AzureOpenAI
+        )
+
+        audience = (
+            settings.llm.audience
+            if settings.llm.audience
+            else "https://cognitiveservices.azure.com/.default"
+        )
+
+        if is_azure_client and not settings.llm.api_key:
+            return get_bearer_token_provider(DefaultAzureCredential(), audience)
         else:
             return None
 

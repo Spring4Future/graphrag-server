@@ -1,10 +1,10 @@
 import pandas as pd
 import tiktoken
 
+from graphrag.callbacks.global_search_callbacks import GlobalSearchLLMCallback
 from graphrag.query.context_builder.builders import GlobalContextBuilder
 from graphrag.query.indexer_adapters import read_indexer_entities, read_indexer_reports
 from graphrag.query.llm.base import BaseLLM
-from graphrag.query.structured_search.global_search.callbacks import GlobalSearchLLMCallback
 from graphrag.query.structured_search.global_search.community_context import (
     GlobalCommunityContext,
 )
